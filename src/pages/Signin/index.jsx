@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth.js";
 import { useForm } from "../../hooks/useForm.js";
 import * as S from "../../styles/style.js";
+import { toastError } from "../../utils/toastError.js";
 import { setLocalStorage } from "../../utils/useLocalStorage.js";
 
 export const Signin = () => {
@@ -21,9 +23,10 @@ export const Signin = () => {
       const { data } = await axios.post(URL, form);
       setUser({ ...user, ...data });
       setLocalStorage("user", data);
+      toast(`Olá ${form.name}!`);
     } catch (error) {
       setDisabled(false);
-      console.log(error);
+      toastError(error, "Login error!");
     }
   };
 

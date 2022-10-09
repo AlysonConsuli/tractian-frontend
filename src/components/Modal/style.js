@@ -29,7 +29,7 @@ export const ModalStyle = styled.div`
   line-height: 39px;
   span {
     font-size: 34px;
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.text};
   }
   div {
     display: flex;
@@ -40,20 +40,20 @@ export const ModalStyle = styled.div`
       width: 9.3vw;
       min-width: 114px;
       height: 37px;
-      background: ${({ theme }) => theme.colors.buttonBackground};
+      background: ${({ theme }) => theme.colors.main};
       border-radius: 5px;
       font-family: ${({ theme }) => theme.fonts.mainFont};
       font-weight: 700;
       font-size: 18px;
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.text};
       border: none;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
       &:first-child {
-        background: ${({ theme }) => theme.colors.secondary};
-        color: ${({ theme }) => theme.colors.buttonBackground};
+        background: ${({ theme }) => theme.colors.text};
+        color: ${({ theme }) => theme.colors.main};
       }
     }
   }

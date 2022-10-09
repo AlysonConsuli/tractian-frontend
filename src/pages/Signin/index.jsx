@@ -16,7 +16,6 @@ export const Signin = () => {
   const onFinish = async (values) => {
     setDisabled(true);
     try {
-      console.log(values);
       const { data } = await axios.post(URL, values);
       setUser({ ...user, ...data });
       setLocalStorage("user", data);

@@ -49,7 +49,8 @@ export const Signin = () => {
           span: 12,
         }}
         initialValues={{
-          remember: true,
+          name: "Emerson",
+          password: "1234",
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}

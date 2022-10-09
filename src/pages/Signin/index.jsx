@@ -1,47 +1,97 @@
 import axios from "axios";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks/useAuth.js";
-import { useForm } from "../../hooks/useForm.js";
 import * as S from "../../styles/style.js";
 import { toastError } from "../../utils/toastError.js";
 import { setLocalStorage } from "../../utils/useLocalStorage.js";
+import { Button, Col, Form, Input, message } from "antd";
+import { useState } from "react";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
 export const Signin = () => {
   const URL = `${process.env.REACT_APP_API_URL}/auth/sign-in`;
   const { user, setUser } = useAuth();
   const [disabled, setDisabled] = useState(false);
-  const [form, handleForm] = useForm({
-    name: "Emerson",
-    password: "1234",
-  });
 
-  const sendForm = async (e) => {
-    e.preventDefault();
+  const onFinish = async (values) => {
     setDisabled(true);
     try {
-      const { data } = await axios.post(URL, form);
+      console.log(values);
+      const { data } = await axios.post(URL, values);
       setUser({ ...user, ...data });
       setLocalStorage("user", data);
-      toast(`Olá ${form.name}!`);
+      toast(`Olá ${values.name}!`);
     } catch (error) {
       setDisabled(false);
       toastError(error, "Login error!");
     }
   };
 
+  const onFinishFailed = () => {
+    message.error("Submit failed!");
+  };
+
+  const btnLayout = {
+    xs: { offset: 1 },
+    sm: { offset: 6 },
+  };
+
   return (
     <S.PageContainer>
-      <h1>Sign-in</h1>
-      <form onSubmit={sendForm}>
-        <input name="name" onChange={handleForm} value={form.name}></input>
-        <input
+      <S.BoxAuthLogo>
+        <h1>Tractian</h1>
+      </S.BoxAuthLogo>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 6,
+        }}
+        wrapperCol={{
+          span: 12,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+        disabled={disabled}
+      >
+        <Form.Item
+          label="Username"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+            },
+          ]}
+        >
+          <Input prefix={<UserOutlined className="site-form-item-icon" />} />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
           name="password"
-          onChange={handleForm}
-          value={form.password}
-        ></input>
-        <button type="submit" disabled={disabled}></button>
-      </form>
+          rules={[
+            {
+              required: true,
+              min: 4,
+              message: "Minimum of 4 characters!",
+            },
+          ]}
+        >
+          <Input.Password
+            prefix={<LockOutlined className="site-form-item-icon" />}
+          />
+        </Form.Item>
+
+        <Col {...btnLayout}>
+          <Button type="primary" htmlType="submit">
+            Log in
+          </Button>
+        </Col>
+      </Form>
     </S.PageContainer>
   );
 };

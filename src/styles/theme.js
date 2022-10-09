@@ -4,12 +4,11 @@ export const theme = {
   },
   colors: {
     mainBackground: "#fefefe",
+    main: "#517BDA",
+    secondary: "#000",
+    text: "#fff",
   },
   breakPoints: {
-    mobile: "320px",
-    tablet: "481px",
-    laptop: "769px",
-    largeScreen: "1024px",
-    desktop: "1279px",
+    mobile: "576px",
   },
 };

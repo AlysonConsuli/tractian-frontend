@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLayout } from "../layouts/AuthLayout";
+import ProtectedLayout from "../layouts/ProtectedLayout";
 import { Home } from "../pages/Home";
 import { Signin } from "../pages/Signin";
 
@@ -9,7 +10,9 @@ export const Router = () => {
       <Route element={<AuthLayout />}>
         <Route path="/" element={<Signin />} />
       </Route>
-      <Route path="/homepage" element={<Home />} />
+      <Route element={<ProtectedLayout />}>
+        <Route path="/homepage" element={<Home />} />
+      </Route>
     </Routes>
   );
 };

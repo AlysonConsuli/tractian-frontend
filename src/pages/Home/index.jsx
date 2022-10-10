@@ -1,6 +1,14 @@
 import * as S from "../../styles/style.js";
 
-import { DesktopOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  TeamOutlined,
+  EyeOutlined,
+  PlusOutlined,
+  BarChartOutlined,
+  BankOutlined,
+  ToolOutlined,
+  ApartmentOutlined,
+} from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import { Users } from "../../components/Users/index.jsx";
@@ -18,10 +26,23 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Users", "1", <TeamOutlined />),
-  getItem("Companies", "2", <DesktopOutlined />),
-  getItem("Units", "3", <UserOutlined />),
-  getItem("Assets", "4", <TeamOutlined />),
+  getItem("Users", "sub 1", <TeamOutlined />, [
+    getItem("Open", "1", <EyeOutlined />),
+    getItem("Add", "2", <PlusOutlined />),
+  ]),
+  getItem("Companies", "sub 2", <BankOutlined />, [
+    getItem("Open", "3", <EyeOutlined />),
+    getItem("Add", "4", <PlusOutlined />),
+  ]),
+  getItem("Units", "sub 3", <ApartmentOutlined />, [
+    getItem("Open", "5", <EyeOutlined />),
+    getItem("Add", "6", <PlusOutlined />),
+  ]),
+  getItem("Assets", "sub 4", <ToolOutlined />, [
+    getItem("Open", "7", <EyeOutlined />),
+    getItem("Add", "8", <PlusOutlined />),
+  ]),
+  getItem("Graphs", "9", <BarChartOutlined />),
 ];
 
 export const Home = () => {
@@ -70,6 +91,7 @@ export const Home = () => {
             }}
           >
             <Breadcrumb.Item>{selectedKey === 1 && "Users"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{selectedKey === 1 && "Open"}</Breadcrumb.Item>
           </Breadcrumb>
           <div
             className="site-layout-background"

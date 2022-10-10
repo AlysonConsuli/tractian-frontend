@@ -1,10 +1,10 @@
-import { ThreeDots } from "react-loader-spinner";
 import * as S from "../../styles/style.js";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const Loading = () => {
   return (
     <S.Loading>
-      <ThreeDots color="#001529" height="100" width="100" ariaLabel="loading" />
+      <LoadingOutlined />
     </S.Loading>
   );
 };

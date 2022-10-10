@@ -21,7 +21,7 @@ export const Users = () => {
       .catch((error) => toastError(error));
   }, []);
 
-  if (users?.length) {
+  if (!users?.length) {
     return <Loading />;
   }
 

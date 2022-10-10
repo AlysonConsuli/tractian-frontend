@@ -8,7 +8,7 @@ import { config } from "../../utils/config.js";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Loading } from "../Loading/index.jsx";
 
-export const FormUser = () => {
+export const FormUser = ({ selectedKey }) => {
   const URL = `${process.env.REACT_APP_API_URL}`;
   const [disabled, setDisabled] = useState(false);
   const [companies, setCompanies] = useState([]);
@@ -32,13 +32,15 @@ export const FormUser = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${URL}/company`, config(user))
-      .then(({ data }) => setCompanies(data.companies))
-      .catch((error) => toastError(error));
+    if (selectedKey !== "addCompany") {
+      axios
+        .get(`${URL}/company`, config(user))
+        .then(({ data }) => setCompanies(data.companies))
+        .catch((error) => toastError(error));
+    }
   }, []);
 
-  if (!companies?.length) {
+  if (selectedKey !== "addCompany" && !companies?.length) {
     return <Loading />;
   }
 

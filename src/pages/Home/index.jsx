@@ -28,28 +28,46 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem("Users", "sub 1", <TeamOutlined />, [
-    getItem("Open", "1", <EyeOutlined />),
-    getItem("Add", "2", <PlusOutlined />),
+    getItem("Open", "openUser", <EyeOutlined />),
+    getItem("Add", "addUser", <PlusOutlined />),
   ]),
   getItem("Companies", "sub 2", <BankOutlined />, [
-    getItem("Open", "3", <EyeOutlined />),
-    getItem("Add", "4", <PlusOutlined />),
+    getItem("Open", "openCompany", <EyeOutlined />),
+    getItem("Add", "addCompany", <PlusOutlined />),
   ]),
   getItem("Units", "sub 3", <ApartmentOutlined />, [
-    getItem("Open", "5", <EyeOutlined />),
-    getItem("Add", "6", <PlusOutlined />),
+    getItem("Open", "openUnit", <EyeOutlined />),
+    getItem("Add", "addUnit", <PlusOutlined />),
   ]),
   getItem("Assets", "sub 4", <ToolOutlined />, [
-    getItem("Open", "7", <EyeOutlined />),
-    getItem("Add", "8", <PlusOutlined />),
+    getItem("Open", "openAsset", <EyeOutlined />),
+    getItem("Add", "addAsset", <PlusOutlined />),
   ]),
-  getItem("Graphs", "9", <BarChartOutlined />),
+  getItem("Graphs", "graph", <BarChartOutlined />),
 ];
 
 export const Home = () => {
   const { user } = useAuth();
   const [collapsed, setCollapsed] = useState(false);
-  const [selectedKey, setSelectedKey] = useState(0);
+  const [selectedKey, setSelectedKey] = useState();
+
+  const conditions = {
+    user: selectedKey === "openUser" || selectedKey === "addUser",
+    company: selectedKey === "openCompany" || selectedKey === "addCompany",
+    unit: selectedKey === "openUnit" || selectedKey === "addUnit",
+    asset: selectedKey === "openAsset" || selectedKey === "addAsset",
+    graph: selectedKey === "graph",
+    open:
+      selectedKey === "openUser" ||
+      selectedKey === "openCompany" ||
+      selectedKey === "openUnit" ||
+      selectedKey === "openAsset",
+    add:
+      selectedKey === "addUser" ||
+      selectedKey === "addCompany" ||
+      selectedKey === "addUnit" ||
+      selectedKey === "addAsset",
+  };
 
   return (
     <Layout
@@ -68,10 +86,9 @@ export const Home = () => {
         </S.Logo>
         <Menu
           theme="dark"
-          defaultSelectedKeys={["0"]}
           mode="inline"
           items={items}
-          onSelect={(value) => setSelectedKey(+value.key)}
+          onSelect={(value) => setSelectedKey(value.key)}
         />
       </Sider>
       <Layout className="site-layout">
@@ -91,11 +108,15 @@ export const Home = () => {
               margin: "16px 0",
             }}
           >
+            <Breadcrumb.Item>{conditions.user && "Users"}</Breadcrumb.Item>
             <Breadcrumb.Item>
-              {(selectedKey === 1 || selectedKey === 2) && "Users"}
+              {conditions.company && "Companies"}
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{selectedKey === 1 && "Open"}</Breadcrumb.Item>
-            <Breadcrumb.Item>{selectedKey === 2 && "Add"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{conditions.unit && "Units"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{conditions.asset && "Assets"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{conditions.graph && "Graphs"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{conditions.open && "Open"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{conditions.add && "Add"}</Breadcrumb.Item>
           </Breadcrumb>
           <div
             className="site-layout-background"
@@ -104,8 +125,10 @@ export const Home = () => {
               minHeight: 360,
             }}
           >
-            {selectedKey === 1 && <Users />}
-            {selectedKey === 2 && <FormUser />}
+            {selectedKey === "openUser" && <Users />}
+            {selectedKey === "addUser" && (
+              <FormUser selectedKey={selectedKey} />
+            )}
             {!selectedKey && (
               <S.HomeMsg>
                 <span>

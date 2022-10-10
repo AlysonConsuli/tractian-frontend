@@ -8,27 +8,29 @@ import * as S from "../../styles/style.js";
 import { BoxCard } from "../Card";
 import { Loading } from "../Loading";
 
-export const Users = () => {
-  const URL = `${process.env.REACT_APP_API_URL}/user`;
+export const Cards = ({ selectedKey }) => {
+  const uri = selectedKey.split("-")[1];
+
+  const URL = `${process.env.REACT_APP_API_URL}/${uri}`;
   const { user } = useAuth();
 
-  const [users, setUsers] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
       .get(URL, config(user))
-      .then(({ data }) => setUsers(data.users))
+      .then(({ data: incomingData }) => setData(incomingData))
       .catch((error) => toastError(error));
   }, []);
 
-  if (!users?.length) {
+  if (!data?.length) {
     return <Loading />;
   }
 
   return (
     <S.CardContainer>
-      {users?.map((user) => (
-        <BoxCard key={user.id} data={user} />
+      {data?.map((el) => (
+        <BoxCard key={el.id} data={el} />
       ))}
     </S.CardContainer>
   );

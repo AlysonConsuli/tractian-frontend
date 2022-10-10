@@ -11,10 +11,10 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
-import { Users } from "../../components/Users/index.jsx";
+import { Cards } from "../../components/Cards/index.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Logout } from "../../components/Logout/index.jsx";
-import { FormUser } from "../../components/FormUser/index.jsx";
+import { Forms } from "../../components/Forms/index.jsx";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -28,12 +28,12 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem("Users", "sub 1", <TeamOutlined />, [
-    getItem("Open", "openUser", <EyeOutlined />),
-    getItem("Add", "addUser", <PlusOutlined />),
+    getItem("Open", "open-user", <EyeOutlined />),
+    getItem("Add", "add-user", <PlusOutlined />),
   ]),
   getItem("Companies", "sub 2", <BankOutlined />, [
-    getItem("Open", "openCompany", <EyeOutlined />),
-    getItem("Add", "addCompany", <PlusOutlined />),
+    getItem("Open", "open-company", <EyeOutlined />),
+    getItem("Add", "add-company", <PlusOutlined />),
   ]),
   getItem("Units", "sub 3", <ApartmentOutlined />, [
     getItem("Open", "openUnit", <EyeOutlined />),
@@ -52,19 +52,19 @@ export const Home = () => {
   const [selectedKey, setSelectedKey] = useState();
 
   const conditions = {
-    user: selectedKey === "openUser" || selectedKey === "addUser",
-    company: selectedKey === "openCompany" || selectedKey === "addCompany",
+    user: selectedKey === "open-user" || selectedKey === "add-user",
+    company: selectedKey === "open-company" || selectedKey === "add-company",
     unit: selectedKey === "openUnit" || selectedKey === "addUnit",
     asset: selectedKey === "openAsset" || selectedKey === "addAsset",
     graph: selectedKey === "graph",
     open:
-      selectedKey === "openUser" ||
-      selectedKey === "openCompany" ||
+      selectedKey === "open-user" ||
+      selectedKey === "open-company" ||
       selectedKey === "openUnit" ||
       selectedKey === "openAsset",
     add:
-      selectedKey === "addUser" ||
-      selectedKey === "addCompany" ||
+      selectedKey === "add-user" ||
+      selectedKey === "add-company" ||
       selectedKey === "addUnit" ||
       selectedKey === "addAsset",
   };
@@ -125,9 +125,13 @@ export const Home = () => {
               minHeight: 360,
             }}
           >
-            {selectedKey === "openUser" && <Users />}
-            {selectedKey === "addUser" && (
-              <FormUser selectedKey={selectedKey} />
+            {selectedKey === "open-user" && <Cards selectedKey={selectedKey} />}
+            {selectedKey === "add-user" && <Forms selectedKey={selectedKey} />}
+            {selectedKey === "open-company" && (
+              <Cards selectedKey={selectedKey} />
+            )}
+            {selectedKey === "add-company" && (
+              <Forms selectedKey={selectedKey} />
             )}
             {!selectedKey && (
               <S.HomeMsg>

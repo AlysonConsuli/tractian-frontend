@@ -14,7 +14,7 @@ export const Header = styled.header`
   height: 72px;
   background-color: ${({ theme }) => theme.colors.main};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   h1 {
     font-size: 28px;
     color: ${({ theme }) => theme.colors.text};

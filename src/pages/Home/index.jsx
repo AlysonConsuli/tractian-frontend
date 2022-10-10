@@ -107,9 +107,11 @@ export const Home = () => {
             {selectedKey === 1 && <Users />}
             {selectedKey === 2 && <FormUser />}
             {!selectedKey && (
-              <span>
-                Welcome {user.name}! <br /> Please, select some category.
-              </span>
+              <S.HomeMsg>
+                <span>
+                  Welcome {user.name}! <br /> Please, select some category.
+                </span>
+              </S.HomeMsg>
             )}
           </div>
         </Content>

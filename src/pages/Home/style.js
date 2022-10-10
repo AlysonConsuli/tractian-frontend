@@ -11,3 +11,7 @@ export const Logo = styled.div`
     font-size: 18px;
   }
 `;
+
+export const HomeMsg = styled.div`
+  margin: 5px 0 0 10px;
+`;

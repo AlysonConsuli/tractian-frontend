@@ -54,7 +54,7 @@ export const FormUser = () => {
         span: 6,
       }}
       wrapperCol={{
-        span: 10,
+        span: 11,
       }}
       onFinish={onFinish}
       onFinishFailed={onFinishFailed}

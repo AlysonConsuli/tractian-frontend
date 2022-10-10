@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { Users } from "../../components/Users/index.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Logout } from "../../components/Logout/index.jsx";
+import { FormUser } from "../../components/FormUser/index.jsx";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -90,8 +91,11 @@ export const Home = () => {
               margin: "16px 0",
             }}
           >
-            <Breadcrumb.Item>{selectedKey === 1 && "Users"}</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {(selectedKey === 1 || selectedKey === 2) && "Users"}
+            </Breadcrumb.Item>
             <Breadcrumb.Item>{selectedKey === 1 && "Open"}</Breadcrumb.Item>
+            <Breadcrumb.Item>{selectedKey === 2 && "Add"}</Breadcrumb.Item>
           </Breadcrumb>
           <div
             className="site-layout-background"
@@ -101,6 +105,7 @@ export const Home = () => {
             }}
           >
             {selectedKey === 1 && <Users />}
+            {selectedKey === 2 && <FormUser />}
             {!selectedKey && (
               <span>
                 Welcome {user.name}! <br /> Please, select some category.

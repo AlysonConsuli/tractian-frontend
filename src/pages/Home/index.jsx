@@ -143,7 +143,9 @@ export const Home = () => {
             {!selectedKey && (
               <S.HomeMsg>
                 <span>
-                  Welcome {user.name}! <br /> Please, select some category.
+                  <S.Bold>
+                    Welcome {user.name}! <br /> Please, select some category.
+                  </S.Bold>
                 </span>
               </S.HomeMsg>
             )}

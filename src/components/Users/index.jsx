@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { config } from "../../utils/config";
 import { toastError } from "../../utils/toastError";
 import * as S from "../../styles/style.js";
-import { Card } from "../Card";
+import { BoxCard } from "../Card";
 import { Loading } from "../Loading";
 
 export const Users = () => {
@@ -28,7 +28,7 @@ export const Users = () => {
   return (
     <S.CardContainer>
       {users?.map((user) => (
-        <Card key={user.id} />
+        <BoxCard key={user.id} data={user} />
       ))}
     </S.CardContainer>
   );

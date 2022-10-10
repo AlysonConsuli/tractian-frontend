@@ -96,7 +96,7 @@ export const Home = () => {
           <div
             className="site-layout-background"
             style={{
-              padding: 24,
+              padding: 0,
               minHeight: 360,
             }}
           >
@@ -111,6 +111,7 @@ export const Home = () => {
         <Footer
           style={{
             textAlign: "center",
+            padding: "18px 42px",
           }}
         >
           Tractian ©2022 Created by Alyson Consuli

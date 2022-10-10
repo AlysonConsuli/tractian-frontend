@@ -35,6 +35,10 @@ export const Signin = () => {
     sm: { offset: 6 },
   };
 
+  console.log(
+    "Mensagem para correção: O cadastro de usuário é feito pelos gerentes, neste caso, Emerson e Roberta. Por este motivo, as credenciais de Emerson já foram inseridas, para que o site possa ser testado.",
+  );
+
   return (
     <S.PageContainer>
       <S.BoxAuthLogo>

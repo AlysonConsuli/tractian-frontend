@@ -6,6 +6,7 @@ import { config } from "../../utils/config";
 import { toastError } from "../../utils/toastError";
 import * as S from "../../styles/style.js";
 import { Card } from "../Card";
+import { Loading } from "../Loading";
 
 export const Users = () => {
   const URL = `${process.env.REACT_APP_API_URL}/user`;
@@ -20,8 +21,8 @@ export const Users = () => {
       .catch((error) => toastError(error));
   }, []);
 
-  if (!users?.length) {
-    return <span>Loading...</span>;
+  if (users?.length) {
+    return <Loading />;
   }
 
   return (

@@ -5,3 +5,16 @@ export const CardContainer = styled.main`
   flex-wrap: wrap;
   gap: 10px;
 `;
+
+export const CardImage = styled.img`
+  height: 200px;
+  object-fit: contain;
+`;
+
+export const Bold = styled.b`
+  font-weight: 700;
+`;
+
+export const Ul = styled.ul`
+  list-style: disc;
+`;

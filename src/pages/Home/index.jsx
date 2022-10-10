@@ -142,6 +142,9 @@ export const Home = () => {
                 </span>
               </S.HomeMsg>
             )}
+            {selectedKey === "open-asset" && (
+              <Cards selectedKey={selectedKey} />
+            )}
           </div>
         </Content>
         <Footer

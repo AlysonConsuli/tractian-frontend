@@ -25,10 +25,10 @@ export const Users = () => {
   }
 
   return (
-    <S.PageContainer>
+    <S.CardContainer>
       {users?.map((user) => (
         <Card key={user.id} />
       ))}
-    </S.PageContainer>
+    </S.CardContainer>
   );
 };

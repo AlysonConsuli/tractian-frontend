@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import { AuthLayout } from "../layouts/AuthLayout";
-// import { DefaultPage } from "../layouts/DefaultPage";
 import ProtectedLayout from "../layouts/ProtectedLayout";
 import { Home } from "../pages/Home";
 import { Signin } from "../pages/Signin";

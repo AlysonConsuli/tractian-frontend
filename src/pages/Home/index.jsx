@@ -5,6 +5,7 @@ import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import { Users } from "../../components/Users/index.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
+import { Logout } from "../../components/Logout/index.jsx";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -34,6 +35,7 @@ export const Home = () => {
         minHeight: "100vh",
       }}
     >
+      <Logout />
       <Sider
         collapsible
         collapsed={collapsed}
@@ -78,7 +80,9 @@ export const Home = () => {
           >
             {selectedKey === 1 && <Users />}
             {!selectedKey && (
-              <span>Welcome {user.name}! Select some category.</span>
+              <span>
+                Welcome {user.name}! <br /> Please, select some category.
+              </span>
             )}
           </div>
         </Content>

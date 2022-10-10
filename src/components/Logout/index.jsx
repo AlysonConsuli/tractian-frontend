@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import * as S from "../../styles/style.js";
 import { ModalComponent } from "../Modal/index";
 
-export const Header = () => {
+export const Logout = () => {
   const navigate = useNavigate();
   const { setUser } = useAuth();
   const [logoutModal, setLogoutModal] = useState(false);
@@ -23,12 +23,7 @@ export const Header = () => {
         callbackFunction={() => logout()}
         message={"logout"}
       />
-      <S.Header>
-        <S.Title>
-          <h1>Tractian</h1>
-        </S.Title>
-        <S.LogoutIcon onClick={() => setLogoutModal(true)}></S.LogoutIcon>
-      </S.Header>
+      <S.LogoutIcon onClick={() => setLogoutModal(true)}></S.LogoutIcon>
     </>
   );
 };

@@ -36,12 +36,12 @@ const items = [
     getItem("Add", "add-company", <PlusOutlined />),
   ]),
   getItem("Units", "sub 3", <ApartmentOutlined />, [
-    getItem("Open", "openUnit", <EyeOutlined />),
-    getItem("Add", "addUnit", <PlusOutlined />),
+    getItem("Open", "open-unit", <EyeOutlined />),
+    getItem("Add", "add-unit", <PlusOutlined />),
   ]),
   getItem("Assets", "sub 4", <ToolOutlined />, [
-    getItem("Open", "openAsset", <EyeOutlined />),
-    getItem("Add", "addAsset", <PlusOutlined />),
+    getItem("Open", "open-asset", <EyeOutlined />),
+    getItem("Add", "add-asset", <PlusOutlined />),
   ]),
   getItem("Graphs", "graph", <BarChartOutlined />),
 ];
@@ -54,19 +54,19 @@ export const Home = () => {
   const conditions = {
     user: selectedKey === "open-user" || selectedKey === "add-user",
     company: selectedKey === "open-company" || selectedKey === "add-company",
-    unit: selectedKey === "openUnit" || selectedKey === "addUnit",
-    asset: selectedKey === "openAsset" || selectedKey === "addAsset",
+    unit: selectedKey === "open-unit" || selectedKey === "add-unit",
+    asset: selectedKey === "open-asset" || selectedKey === "add-asset",
     graph: selectedKey === "graph",
     open:
       selectedKey === "open-user" ||
       selectedKey === "open-company" ||
-      selectedKey === "openUnit" ||
-      selectedKey === "openAsset",
+      selectedKey === "open-unit" ||
+      selectedKey === "open-asset",
     add:
       selectedKey === "add-user" ||
       selectedKey === "add-company" ||
-      selectedKey === "addUnit" ||
-      selectedKey === "addAsset",
+      selectedKey === "add-unit" ||
+      selectedKey === "add-asset",
   };
 
   return (
@@ -133,6 +133,8 @@ export const Home = () => {
             {selectedKey === "add-company" && (
               <Forms selectedKey={selectedKey} />
             )}
+            {selectedKey === "open-unit" && <Cards selectedKey={selectedKey} />}
+            {selectedKey === "add-unit" && <Forms selectedKey={selectedKey} />}
             {!selectedKey && (
               <S.HomeMsg>
                 <span>

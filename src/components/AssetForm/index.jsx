@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { toastError } from "../../utils/toastError.js";
-import { Button, Col, Form, Input, Select } from "antd";
+import { Button, Col, Form, Input, InputNumber, Select } from "antd";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { config } from "../../utils/config.js";
@@ -16,6 +16,7 @@ export const AssetForm = () => {
 
   const onFinish = async (values) => {
     setDisabled(true);
+    console.log(values);
     try {
       await axios.post(`${URL}/asset`, values, config(user));
       toast(`asset created with success!`);
@@ -90,6 +91,94 @@ export const AssetForm = () => {
             </Select.Option>
           ))}
         </Select>
+      </Form.Item>
+
+      <Form.Item
+        label="Image"
+        name="image"
+        rules={[
+          {
+            required: true,
+            message: "Please input the asset image!",
+          },
+        ]}
+      >
+        <Input placeholder="Image" />
+      </Form.Item>
+
+      <Form.Item
+        label="Description"
+        name="description"
+        rules={[
+          {
+            required: true,
+            message: "Please input the asset description!",
+          },
+        ]}
+      >
+        <Input placeholder="Description" />
+      </Form.Item>
+
+      <Form.Item
+        label="Model"
+        name="model"
+        rules={[
+          {
+            required: true,
+            message: "Please input the asset model!",
+          },
+        ]}
+      >
+        <Input placeholder="Model" />
+      </Form.Item>
+
+      <Form.Item
+        label="Owner"
+        name="owner"
+        rules={[
+          {
+            required: true,
+            message: "Please input the asset owner!",
+          },
+        ]}
+      >
+        <Input placeholder="Owner" />
+      </Form.Item>
+
+      <Form.Item
+        label="Status"
+        name="status"
+        rules={[
+          {
+            required: true,
+            message: "Please select some status!",
+          },
+        ]}
+      >
+        <Select placeholder="Status">
+          <Select.Option value="Running">Running</Select.Option>
+          <Select.Option value="Alerting">Alerting</Select.Option>
+          <Select.Option value="Stopped">Stopped</Select.Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item
+        label="Health Level"
+        name="healthLevel"
+        initialValue={100}
+        rules={[
+          {
+            required: true,
+            message: "Please input the asset health level!",
+          },
+        ]}
+      >
+        <InputNumber
+          min={0}
+          max={100}
+          formatter={(value) => `${value}%`}
+          parser={(value) => value.replace("%", "")}
+        />
       </Form.Item>
 
       <Col {...btnLayout}>

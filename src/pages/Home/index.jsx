@@ -94,9 +94,13 @@ export const Home = () => {
       </Sider>
       <Layout className="site-layout">
         <Header
-          className="site-layout-background"
           style={{
             padding: 0,
+            position: "sticky",
+            zIndex: 11,
+            top: 0,
+            left: 0,
+            right: 0,
           }}
         />
         <Content
@@ -120,7 +124,6 @@ export const Home = () => {
             <Breadcrumb.Item>{conditions.add && "Add"}</Breadcrumb.Item>
           </Breadcrumb>
           <div
-            className="site-layout-background"
             style={{
               padding: 0,
               minHeight: 360,

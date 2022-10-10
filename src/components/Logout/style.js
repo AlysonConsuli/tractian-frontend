@@ -7,7 +7,7 @@ export const LogoutIcon = styled(FiLogOut)`
   cursor: pointer;
   color: white;
   position: fixed;
-  z-index: 11;
+  z-index: 12;
   right: 16px;
   top: 16px;
 `;

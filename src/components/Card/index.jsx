@@ -4,8 +4,7 @@ import { Card } from "antd";
 const { Meta } = Card;
 
 export const BoxCard = ({ data }) => {
-  const { description, model, owner, status, unit } = data;
-  const healthLevel = `${data.healthLevel * 100}%`;
+  const { description, model, owner, status, healthLevel, unit } = data;
 
   return (
     <Card
@@ -39,7 +38,7 @@ export const BoxCard = ({ data }) => {
               <S.Bold>Status:</S.Bold> {status}
             </li>
             <li>
-              <S.Bold>Health Level:</S.Bold> {healthLevel}
+              <S.Bold>Health Level:</S.Bold> {healthLevel}%
             </li>
             <li>
               <S.Bold>Unit:</S.Bold> {unit.name}

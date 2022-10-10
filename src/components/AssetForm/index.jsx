@@ -16,7 +16,6 @@ export const AssetForm = () => {
 
   const onFinish = async (values) => {
     setDisabled(true);
-    console.log(values);
     try {
       await axios.post(`${URL}/asset`, values, config(user));
       toast(`asset created with success!`);

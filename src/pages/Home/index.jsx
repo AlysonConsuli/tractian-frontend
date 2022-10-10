@@ -1,5 +1,4 @@
 import * as S from "../../styles/style.js";
-
 import {
   TeamOutlined,
   EyeOutlined,

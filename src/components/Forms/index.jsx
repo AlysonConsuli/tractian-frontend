@@ -73,7 +73,7 @@ export const Forms = ({ selectedKey }) => {
           },
         ]}
       >
-        <Input placeholder="name" />
+        <Input placeholder="Name" />
       </Form.Item>
 
       {uri === "user" && (

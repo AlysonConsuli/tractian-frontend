@@ -70,7 +70,7 @@ export const AssetForm = () => {
           },
         ]}
       >
-        <Input placeholder="name" />
+        <Input placeholder="Name" />
       </Form.Item>
 
       <Form.Item

@@ -19,7 +19,7 @@ export const Forms = ({ selectedKey }) => {
     setDisabled(true);
     try {
       await axios.post(`${URL}/${uri}`, values, config(user));
-      toast(`${uri} created with success!`);
+      toast.success(`${uri} created with success!`);
     } catch (error) {
       toastError(error, `Error to add ${uri}!`);
     } finally {

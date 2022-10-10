@@ -18,7 +18,7 @@ export const AssetForm = () => {
     setDisabled(true);
     try {
       await axios.post(`${URL}/asset`, values, config(user));
-      toast(`asset created with success!`);
+      toast.success(`asset created with success!`);
     } catch (error) {
       toastError(error, `Error to add asset!`);
     } finally {

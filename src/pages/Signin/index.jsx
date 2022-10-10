@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 import * as S from "../../styles/style.js";
 import { toastError } from "../../utils/toastError.js";
 import { setLocalStorage } from "../../utils/useLocalStorage.js";
-import { Button, Col, Form, Input, message } from "antd";
+import { Button, Col, Form, Input } from "antd";
 import { useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 
@@ -27,7 +27,7 @@ export const Signin = () => {
   };
 
   const onFinishFailed = () => {
-    message.error("Submit failed!");
+    toast.error("Login failed!");
   };
 
   const btnLayout = {

@@ -15,6 +15,7 @@ import { Cards } from "../../components/Cards/index.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Logout } from "../../components/Logout/index.jsx";
 import { Forms } from "../../components/Forms/index.jsx";
+import { AssetForm } from "../../components/AssetForm/index.jsx";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -135,15 +136,16 @@ export const Home = () => {
             )}
             {selectedKey === "open-unit" && <Cards selectedKey={selectedKey} />}
             {selectedKey === "add-unit" && <Forms selectedKey={selectedKey} />}
+            {selectedKey === "open-asset" && (
+              <Cards selectedKey={selectedKey} />
+            )}
+            {selectedKey === "add-asset" && <AssetForm />}
             {!selectedKey && (
               <S.HomeMsg>
                 <span>
                   Welcome {user.name}! <br /> Please, select some category.
                 </span>
               </S.HomeMsg>
-            )}
-            {selectedKey === "open-asset" && (
-              <Cards selectedKey={selectedKey} />
             )}
           </div>
         </Content>

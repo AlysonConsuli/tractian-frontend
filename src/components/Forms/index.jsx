@@ -99,7 +99,7 @@ export const Forms = ({ selectedKey }) => {
           rules={[
             {
               required: true,
-              message: "Please select your company!",
+              message: "Please select some company!",
             },
           ]}
         >

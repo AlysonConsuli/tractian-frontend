@@ -15,6 +15,7 @@ import { useAuth } from "../../hooks/useAuth.js";
 import { Logout } from "../../components/Logout/index.jsx";
 import { Forms } from "../../components/Forms/index.jsx";
 import { AssetForm } from "../../components/AssetForm/index.jsx";
+import { Graph } from "../../components/Graph/index.jsx";
 const { Header, Content, Footer, Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -142,6 +143,7 @@ export const Home = () => {
               <Cards selectedKey={selectedKey} />
             )}
             {selectedKey === "add-asset" && <AssetForm />}
+            {selectedKey === "graph" && <Graph />}
             {!selectedKey && (
               <S.HomeMsg>
                 <span>

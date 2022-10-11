@@ -15,8 +15,6 @@ export const Graph = () => {
   const { user } = useAuth();
   const [data, setData] = useState([]);
 
-  console.log(data);
-
   useEffect(() => {
     axios
       .get(URL, config(user))
@@ -27,9 +25,6 @@ export const Graph = () => {
   const runningPercentage = getPercentage(data, "Running");
   const alertingPercentage = getPercentage(data, "Alerting");
   const stoppedPercentage = getPercentage(data, "Stopped");
-
-  const test = data.map((asset) => asset.healthLevel);
-  console.log(test);
 
   const pieOptions = {
     chart: {
@@ -96,7 +91,7 @@ export const Graph = () => {
         format: "{value}%",
       },
       title: {
-        enabled: true,
+        enabled: false,
       },
       max: 100,
     },

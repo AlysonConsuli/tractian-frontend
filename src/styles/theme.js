@@ -8,6 +8,7 @@ export const theme = {
     secondary: "#000",
     text: "#fff",
     button: "#1877F2",
+    error: "#ff4d4f",
   },
   breakPoints: {
     mobile: "576px",

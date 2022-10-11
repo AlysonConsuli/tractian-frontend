@@ -40,7 +40,7 @@ export const ModalStyle = styled.div`
       width: 9.3vw;
       min-width: 114px;
       height: 37px;
-      background: ${({ theme }) => theme.colors.button};
+      background: ${({ theme }) => theme.colors.error};
       border-radius: 5px;
       font-family: ${({ theme }) => theme.fonts.mainFont};
       font-weight: 700;
@@ -52,8 +52,8 @@ export const ModalStyle = styled.div`
       align-items: center;
       cursor: pointer;
       &:first-child {
-        background: ${({ theme }) => theme.colors.text};
-        color: ${({ theme }) => theme.colors.button};
+        background: ${({ theme }) => theme.colors.button};
+        color: ${({ theme }) => theme.colors.text};
       }
     }
   }

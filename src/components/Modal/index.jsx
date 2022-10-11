@@ -6,6 +6,7 @@ export const ModalComponent = ({
   callbackCloseModal,
   callbackFunction,
   message,
+  btnMessage = message,
 }) => {
   Modal.setAppElement(document.querySelector(".root"));
 
@@ -27,7 +28,7 @@ export const ModalComponent = ({
       </span>
       <div>
         <button onClick={() => callbackCloseModal()}>No, go back</button>
-        <button onClick={() => callbackFunction()}>Yes, {message}</button>
+        <button onClick={() => callbackFunction()}>Yes, {btnMessage}</button>
       </div>
     </Modal>
   );

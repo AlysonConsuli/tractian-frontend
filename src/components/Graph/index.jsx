@@ -99,14 +99,14 @@ export const Graph = () => {
       categories: data.map((asset) => asset.name),
     },
     tooltip: {
-      pointFormat: "Health Level: <b>{point.y:.1f}%</b>",
+      pointFormat: "Health Level: <b>{point.y}%</b>",
     },
     plotOptions: {
       series: {
         borderWidth: 0,
         dataLabels: {
           enabled: true,
-          format: "{point.y:.1f}%",
+          format: "{point.y}%",
         },
       },
       area: {

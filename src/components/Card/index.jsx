@@ -1,5 +1,5 @@
 import * as S from "../../styles/style.js";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import { ModalComponent } from "../Modal/index.jsx";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { toastError } from "../../utils/toastError.js";
 const { Meta } = Card;
 
-export const BoxCard = ({ data, URL, setReload }) => {
+export const BoxCard = ({ data, URL, reload, setReload, editIcon }) => {
   const { id, description, model, owner, status, healthLevel, unit } = data;
   const [deleteModal, setDeleteModal] = useState(false);
   const { user } = useAuth();
@@ -19,7 +19,7 @@ export const BoxCard = ({ data, URL, setReload }) => {
     try {
       await axios.delete(`${URL}/${id}`, config(user));
       toast.success(`${data.name} was deleted!`);
-      setReload(true);
+      setReload(!reload);
     } catch (error) {
       toastError(error, `Error to delete!`);
     } finally {
@@ -42,7 +42,7 @@ export const BoxCard = ({ data, URL, setReload }) => {
         }}
         cover={data?.image && <S.CardImage alt={data.name} src={data.image} />}
         actions={[
-          <EditOutlined key="edit" />,
+          editIcon,
           <DeleteOutlined onClick={() => setDeleteModal(true)} key="delete" />,
         ]}
       >

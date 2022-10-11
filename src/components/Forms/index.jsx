@@ -8,22 +8,34 @@ import { config } from "../../utils/config.js";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Loading } from "../Loading/index.jsx";
 
-export const Forms = ({ selectedKey }) => {
+export const Forms = ({ selectedKey, edit, setEdit }) => {
   const URL = process.env.REACT_APP_API_URL;
   const uri = selectedKey.split("-")[1];
   const [disabled, setDisabled] = useState(false);
   const [companies, setCompanies] = useState([]);
   const { user } = useAuth();
+  console.log(edit);
 
   const onFinish = async (values) => {
     setDisabled(true);
-    try {
-      await axios.post(`${URL}/${uri}`, values, config(user));
-      toast.success(`${uri} created with success!`);
-    } catch (error) {
-      toastError(error, `Error to add ${uri}!`);
-    } finally {
-      setDisabled(false);
+    if (!edit) {
+      try {
+        await axios.post(`${URL}/${uri}`, values, config(user));
+        toast.success(`${uri} created with success!`);
+      } catch (error) {
+        toastError(error, `Error to add ${uri}!`);
+      } finally {
+        setDisabled(false);
+      }
+    } else {
+      try {
+        await axios.put(`${URL}/${uri}/${edit.id}`, values, config(user));
+        toast.success(`${uri} edited with success!`);
+        setEdit(false);
+      } catch (error) {
+        toastError(error, `Error to edit ${uri}!`);
+        setDisabled(false);
+      }
     }
   };
 
@@ -40,14 +52,14 @@ export const Forms = ({ selectedKey }) => {
     }
   }, []);
 
-  if (uri !== "company" && !companies?.length) {
-    return <Loading />;
-  }
-
   const btnLayout = {
     xs: { offset: 1 },
     sm: { offset: 6 },
   };
+
+  if (uri !== "company" && !companies?.length) {
+    return <Loading />;
+  }
 
   return (
     <Form
@@ -66,6 +78,7 @@ export const Forms = ({ selectedKey }) => {
       <Form.Item
         label="Name"
         name="name"
+        initialValue={edit?.name}
         rules={[
           {
             required: true,
@@ -114,7 +127,12 @@ export const Forms = ({ selectedKey }) => {
       )}
 
       {uri === "user" && (
-        <Form.Item label="IsAdmin" name="isAdmin" valuePropName="checked">
+        <Form.Item
+          label="IsAdmin"
+          name="isAdmin"
+          initialValue={edit?.isAdmin}
+          valuePropName="checked"
+        >
           <Switch />
         </Form.Item>
       )}

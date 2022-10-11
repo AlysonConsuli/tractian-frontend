@@ -48,7 +48,7 @@ export const BoxCard = ({ data, URL, reload, setReload, editIcon }) => {
       >
         <Meta
           title={<S.Bold>{data.name}</S.Bold>}
-          style={{ paddingBottom: 10 }}
+          style={{ paddingBottom: 10, maxWidth: "24vw" }}
         />
         {data?.company?.name ? (
           <p>

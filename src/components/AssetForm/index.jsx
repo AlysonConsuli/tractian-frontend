@@ -48,14 +48,14 @@ export const AssetForm = ({ edit, setEdit }) => {
       .catch((error) => toastError(error));
   }, []);
 
-  if (!units?.length) {
-    return <Loading />;
-  }
-
   const btnLayout = {
     xs: { offset: 1 },
     sm: { offset: 6 },
   };
+
+  if (!units?.length) {
+    return <Loading />;
+  }
 
   return (
     <Form

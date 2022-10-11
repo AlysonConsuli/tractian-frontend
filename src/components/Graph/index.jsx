@@ -76,12 +76,12 @@ export const Graph = () => {
             selected: true,
           },
           {
-            name: "Alerting",
-            y: alertingPercentage,
-          },
-          {
             name: "Stopped",
             y: stoppedPercentage,
+          },
+          {
+            name: "Alerting",
+            y: alertingPercentage,
           },
         ],
       },

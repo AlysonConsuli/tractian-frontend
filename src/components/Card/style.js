@@ -18,3 +18,7 @@ export const Bold = styled.b`
 export const Ul = styled.ul`
   list-style: disc;
 `;
+
+export const Margin = styled.div`
+  margin-top: 10px;
+`;

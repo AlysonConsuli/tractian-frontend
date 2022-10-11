@@ -8,6 +8,7 @@ import { config } from "../../utils/config";
 import { getPercentage } from "../../utils/getPercentage";
 import { toastError } from "../../utils/toastError";
 import { Loading } from "../Loading";
+import * as S from "../../styles/style.js";
 
 export const Graph = () => {
   const URL = `${process.env.REACT_APP_API_URL}/asset`;
@@ -27,7 +28,10 @@ export const Graph = () => {
   const alertingPercentage = getPercentage(data, "Alerting");
   const stoppedPercentage = getPercentage(data, "Stopped");
 
-  const options = {
+  const test = data.map((asset) => asset.healthLevel);
+  console.log(test);
+
+  const pieOptions = {
     chart: {
       plotBackgroundColor: null,
       plotBorderWidth: null,
@@ -79,9 +83,61 @@ export const Graph = () => {
     ],
   };
 
+  const areaOptions = {
+    chart: {
+      type: "area",
+    },
+    title: {
+      text: "Assets Health Level",
+    },
+    legend: { enabled: false },
+    yAxis: {
+      labels: {
+        format: "{value}%",
+      },
+      title: {
+        enabled: true,
+      },
+      max: 100,
+    },
+    xAxis: {
+      categories: data.map((asset) => asset.name),
+    },
+    tooltip: {
+      pointFormat: "Health Level: <b>{point.y:.1f}%</b>",
+    },
+    plotOptions: {
+      series: {
+        borderWidth: 0,
+        dataLabels: {
+          enabled: true,
+          format: "{point.y:.1f}%",
+        },
+      },
+      area: {
+        fillOpacity: 0.5,
+      },
+    },
+    credits: {
+      enabled: false,
+    },
+    series: [
+      {
+        name: "Assets",
+        data: data.map((asset) => asset.healthLevel),
+      },
+    ],
+  };
+
   if (!data?.length) {
     return <Loading />;
   }
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+  return (
+    <>
+      <HighchartsReact highcharts={Highcharts} options={pieOptions} />
+      <S.Margin />
+      <HighchartsReact highcharts={Highcharts} options={areaOptions} />
+    </>
+  );
 };

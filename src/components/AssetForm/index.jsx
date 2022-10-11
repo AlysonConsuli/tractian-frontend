@@ -8,7 +8,7 @@ import { config } from "../../utils/config.js";
 import { useAuth } from "../../hooks/useAuth.js";
 import { Loading } from "../Loading/index.jsx";
 
-export const AssetForm = () => {
+export const AssetForm = ({ edit, setEdit }) => {
   const URL = process.env.REACT_APP_API_URL;
   const [disabled, setDisabled] = useState(false);
   const [units, setUnits] = useState([]);
@@ -16,13 +16,24 @@ export const AssetForm = () => {
 
   const onFinish = async (values) => {
     setDisabled(true);
-    try {
-      await axios.post(`${URL}/asset`, values, config(user));
-      toast.success(`asset created with success!`);
-    } catch (error) {
-      toastError(error, `Error to add asset!`);
-    } finally {
-      setDisabled(false);
+    if (!edit) {
+      try {
+        await axios.post(`${URL}/asset`, values, config(user));
+        toast.success(`asset created with success!`);
+      } catch (error) {
+        toastError(error, `Error to add asset!`);
+      } finally {
+        setDisabled(false);
+      }
+    } else {
+      try {
+        await axios.put(`${URL}/asset/${edit.id}`, values, config(user));
+        toast.success(`asset edited with success!`);
+        setEdit(false);
+      } catch (error) {
+        toastError(error, `Error to edit asset!`);
+        setDisabled(false);
+      }
     }
   };
 
@@ -63,6 +74,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Name"
         name="name"
+        initialValue={edit?.name}
         rules={[
           {
             required: true,
@@ -95,6 +107,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Image"
         name="image"
+        initialValue={edit?.image}
         rules={[
           {
             required: true,
@@ -108,6 +121,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Description"
         name="description"
+        initialValue={edit?.description}
         rules={[
           {
             required: true,
@@ -121,6 +135,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Model"
         name="model"
+        initialValue={edit?.model}
         rules={[
           {
             required: true,
@@ -134,6 +149,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Owner"
         name="owner"
+        initialValue={edit?.owner}
         rules={[
           {
             required: true,
@@ -147,6 +163,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Status"
         name="status"
+        initialValue={edit?.status}
         rules={[
           {
             required: true,
@@ -164,7 +181,7 @@ export const AssetForm = () => {
       <Form.Item
         label="Health Level"
         name="healthLevel"
-        initialValue={100}
+        initialValue={edit?.healthLevel || 100}
         rules={[
           {
             required: true,

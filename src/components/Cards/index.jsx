@@ -9,6 +9,7 @@ import { BoxCard } from "../Card";
 import { Loading } from "../Loading";
 import { EditOutlined } from "@ant-design/icons";
 import { Forms } from "../Forms";
+import { AssetForm } from "../AssetForm";
 
 export const Cards = ({ selectedKey }) => {
   const uri = selectedKey.split("-")[1];
@@ -28,6 +29,10 @@ export const Cards = ({ selectedKey }) => {
 
   if (!data?.length) {
     return <Loading />;
+  }
+
+  if (edit && uri === "asset") {
+    return <AssetForm edit={edit} setEdit={(value) => setEdit(value)} />;
   }
 
   if (edit) {

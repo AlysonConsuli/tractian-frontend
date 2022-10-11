@@ -14,7 +14,6 @@ export const Forms = ({ selectedKey, edit, setEdit }) => {
   const [disabled, setDisabled] = useState(false);
   const [companies, setCompanies] = useState([]);
   const { user } = useAuth();
-  console.log(edit);
 
   const onFinish = async (values) => {
     setDisabled(true);

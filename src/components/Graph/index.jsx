@@ -5,10 +5,14 @@ import HighchartsReact from "highcharts-react-official";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { config } from "../../utils/config";
-import { getPercentage } from "../../utils/getPercentage";
+import {
+  getHealthLevelPercentage,
+  getStatusPercentage,
+} from "../../utils/getPercentage";
 import { toastError } from "../../utils/toastError";
 import { Loading } from "../Loading";
 import * as S from "../../styles/style.js";
+import { getUnitsWithAssets } from "../../utils/getunitsWithAssets";
 
 export const Graph = () => {
   const URL = `${process.env.REACT_APP_API_URL}/asset`;
@@ -22,9 +26,15 @@ export const Graph = () => {
       .catch((error) => toastError(error));
   }, []);
 
-  const runningPercentage = getPercentage(data, "Running");
-  const alertingPercentage = getPercentage(data, "Alerting");
-  const stoppedPercentage = getPercentage(data, "Stopped");
+  const runningPercentage = getStatusPercentage(data, "Running");
+  const alertingPercentage = getStatusPercentage(data, "Alerting");
+  const stoppedPercentage = getStatusPercentage(data, "Stopped");
+
+  const unitsWithAssets = getUnitsWithAssets(data);
+
+  const healthLevels = unitsWithAssets.map((unit, i) =>
+    getHealthLevelPercentage(data, unitsWithAssets[i]),
+  );
 
   const pieOptions = {
     chart: {
@@ -124,6 +134,42 @@ export const Graph = () => {
     ],
   };
 
+  const columnOptions = {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Assets average health level per unit",
+    },
+    xAxis: {
+      categories: unitsWithAssets,
+    },
+    yAxis: {
+      labels: {
+        format: "{value}%",
+      },
+      title: {
+        enabled: false,
+      },
+      max: 100,
+    },
+    tooltip: {
+      pointFormat: "Health Level Average: <b>{point.y}%</b>",
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0,
+      },
+    },
+    series: [
+      {
+        name: "Units",
+        data: healthLevels,
+      },
+    ],
+  };
+
   if (!data?.length) {
     return <Loading />;
   }
@@ -133,6 +179,8 @@ export const Graph = () => {
       <HighchartsReact highcharts={Highcharts} options={pieOptions} />
       <S.Margin />
       <HighchartsReact highcharts={Highcharts} options={areaOptions} />
+      <S.Margin />
+      <HighchartsReact highcharts={Highcharts} options={columnOptions} />
     </>
   );
 };

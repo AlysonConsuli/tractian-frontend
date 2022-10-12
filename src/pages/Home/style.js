@@ -9,6 +9,8 @@ export const Logo = styled.div`
   span {
     color: ${({ theme }) => theme.colors.text};
     font-size: 18px;
+    font-family: "Saira Stencil One";
+    text-align: center;
   }
 `;
 

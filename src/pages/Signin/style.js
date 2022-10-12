@@ -14,5 +14,6 @@ export const BoxAuthLogo = styled.header`
     font-size: 44px;
     margin-bottom: 7px;
     text-align: center;
+    font-family: "Saira Stencil One";
   }
 `;

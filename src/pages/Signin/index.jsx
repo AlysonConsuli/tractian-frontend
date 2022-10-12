@@ -42,7 +42,7 @@ export const Signin = () => {
   return (
     <S.PageContainer>
       <S.BoxAuthLogo>
-        <h1>Tractian</h1>
+        <h1>Freios Supremos</h1>
       </S.BoxAuthLogo>
       <Form
         name="basic"

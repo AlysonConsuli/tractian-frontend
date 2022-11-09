@@ -83,7 +83,7 @@ export const Home = () => {
         onCollapse={(value) => setCollapsed(value)}
       >
         <S.Logo>
-          <span>Freios Supremos</span>
+          <span>Tractian</span>
         </S.Logo>
         <Menu
           theme="dark"

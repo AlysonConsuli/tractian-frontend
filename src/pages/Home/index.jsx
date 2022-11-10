@@ -113,15 +113,13 @@ export const Home = () => {
               margin: "16px 0",
             }}
           >
-            <Breadcrumb.Item>{conditions.user && "Users"}</Breadcrumb.Item>
-            <Breadcrumb.Item>
-              {conditions.company && "Companies"}
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>{conditions.unit && "Units"}</Breadcrumb.Item>
-            <Breadcrumb.Item>{conditions.asset && "Assets"}</Breadcrumb.Item>
-            <Breadcrumb.Item>{conditions.graph && "Graphs"}</Breadcrumb.Item>
-            <Breadcrumb.Item>{conditions.open && "Open"}</Breadcrumb.Item>
-            <Breadcrumb.Item>{conditions.add && "Add"}</Breadcrumb.Item>
+            {conditions.user && <Breadcrumb.Item>Users</Breadcrumb.Item>}
+            {conditions.company && <Breadcrumb.Item>Companies</Breadcrumb.Item>}
+            {conditions.unit && <Breadcrumb.Item>Units</Breadcrumb.Item>}
+            {conditions.asset && <Breadcrumb.Item>Assets</Breadcrumb.Item>}
+            {conditions.graph && <Breadcrumb.Item>Graphs</Breadcrumb.Item>}
+            {conditions.open && <Breadcrumb.Item>Open</Breadcrumb.Item>}
+            {conditions.add && <Breadcrumb.Item>Add</Breadcrumb.Item>}
           </Breadcrumb>
           <div
             style={{
